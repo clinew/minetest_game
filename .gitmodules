@@ -1,3 +1,6 @@
 [submodule "mods/cme"]
 	path = mods/cme
 	url = https://github.com/clinew/cme
+[submodule "mods/craftguide"]
+	path = mods/craftguide
+	url = https://github.com/clinew/craftguide
