@@ -13,3 +13,6 @@
 [submodule "mods/pyramids"]
 	path = mods/pyramids
 	url = https://github.com/clinew/pyramids
+[submodule "mods/signs_lib"]
+	path = mods/signs_lib
+	url = https://github.com/zeuner/signs_lib
