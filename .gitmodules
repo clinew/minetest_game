@@ -4,3 +4,6 @@
 [submodule "mods/craftguide"]
 	path = mods/craftguide
 	url = https://github.com/clinew/craftguide
+[submodule "mods/farming_plus"]
+	path = mods/farming_plus
+	url = https://github.com/clinew/farming_plus
