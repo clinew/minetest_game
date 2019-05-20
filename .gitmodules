@@ -7,3 +7,6 @@
 [submodule "mods/farming_plus"]
 	path = mods/farming_plus
 	url = https://github.com/clinew/farming_plus
+[submodule "mods/mapfix"]
+	path = mods/mapfix
+	url = https://github.com/minetest-mods/mapfix
