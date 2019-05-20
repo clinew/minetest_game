@@ -422,6 +422,12 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:bronze_ingot",
+	recipe = {"default:steel_ingot", "default:copper_ingot"},
+	type = "shapeless"
+})
+
+minetest.register_craft({
 	output = 'default:bronzeblock',
 	recipe = {
 		{'default:bronze_ingot', 'default:bronze_ingot', 'default:bronze_ingot'},
