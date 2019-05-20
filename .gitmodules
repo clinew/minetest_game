@@ -1,0 +1,3 @@
+[submodule "mods/cme"]
+	path = mods/cme
+	url = https://github.com/clinew/cme
