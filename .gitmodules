@@ -10,3 +10,6 @@
 [submodule "mods/mapfix"]
 	path = mods/mapfix
 	url = https://github.com/minetest-mods/mapfix
+[submodule "mods/pyramids"]
+	path = mods/pyramids
+	url = https://github.com/clinew/pyramids
