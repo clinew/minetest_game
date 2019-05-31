@@ -19,3 +19,6 @@
 [submodule "mods/auth_rx"]
 	path = mods/auth_rx
 	url = https://github.com/clinew/auth_rx.git
+[submodule "mods/irc"]
+	path = mods/irc
+	url = https://github.com/clinew/irc
