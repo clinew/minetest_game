@@ -22,3 +22,6 @@
 [submodule "mods/irc"]
 	path = mods/irc
 	url = https://github.com/clinew/irc
+[submodule "mods/tinctures"]
+	path = mods/tinctures
+	url = https://codeberg.org/frostsnow/tinctures.git
