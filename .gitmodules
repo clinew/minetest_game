@@ -12,7 +12,7 @@
 	url = https://github.com/minetest-mods/mapfix
 [submodule "mods/tsm_pyramids"]
 	path = mods/tsm_pyramids
-	url = https://repo.or.cz/minetest_pyramids/tsm_pyramids.git
+	url = https://codeberg.org/Wuzzy/minetest_tsm_pyramids.git
 [submodule "mods/signs_lib"]
 	path = mods/signs_lib
 	url = https://github.com/mt-mods/signs_lib
@@ -22,3 +22,6 @@
 [submodule "mods/irc"]
 	path = mods/irc
 	url = https://github.com/clinew/irc
+[submodule "mods/tinctures"]
+	path = mods/tinctures
+	url = https://codeberg.org/frostsnow/tinctures.git
