@@ -324,7 +324,7 @@ Allows creation of new fences with "fencelike" drawtype.
 	name = "default:fence_wood",
 	description = "Wooden Fence",
 	texture = "default_wood.png",
-	material = "default:wood",
+	material = "default:wood", -- `nil` if you don't want the recipe
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 
@@ -382,6 +382,8 @@ The farming API allows you to easily register plants and hoes.
 		-- ^ Always provide a plant texture for each step, format: modname_plantname_i.png (i = stepnumber)
 		minlight = 13,                         -- Minimum light to grow
 		maxlight = default.LIGHT_MAX           -- Maximum light to grow
+		can_grow = function(pos)               -- Сalled every growth tick to check if the plant can grow, returns bool
+		                                       -- (optional, checks for wet soil by default)
 	}
 
 
@@ -631,6 +633,34 @@ set a players home position and teleport a player to home position.
 
  * `name` Player you wish to teleport to their home position
  * return value: false if player cannot be sent home, otherwise true
+
+Spawn API
+---------
+
+The spawn mod takes care of deciding the position of new and respawning players
+in the world and has an API to modify its behavior.
+
+`spawn.get_default_pos()`
+* Gets the default spawn position as decided by a biome-dependent algorithm.
+* This is not influenced by settings like "static_spawnpoint" or "engine_spawn".
+* return value: a vector or `nil` on failure
+
+`spawn.add_suitable_biome(biome)`:
+* Adds a biome to the list of allowed biomes for the above algorithm.
+* `biome`: Name of a registered biome
+
+`spawn.register_on_spawn(func)`:
+* Registers a callback to be called when a player (re-)spawns. This can be used
+  to intercept the normal logic to e.g. respawn a player at his bed.
+* `func`: `function(player, is_new)` with arguments
+  - `player`: ObjectRef
+  - `is_new`: true if the player is joining the server for the first time
+  - return value: true to skip all other spawn logic, false or nil otherwise
+
+When a player (re-)spawns the following order is executed:
+1. All spawn callbacks in order of registration.
+2. If no result, teleport player to `spawn.get_default_pos()`.
+3. If that fails, spawning is left up to engine.
 
 
 Sfinv API
@@ -1169,3 +1199,29 @@ the log.
  * after logging the action, the original callback (if any) is called
  * `def`     See [Node definition]
  * `name`    Description of the node in the log message
+
+
+Weather API
+-----------
+
+The weather mod will constantly adjust weather effects seen by the player
+(that is: cloud parameters and shadow intensity).
+These can be influenced using this API.
+
+#### `weather.get = function(player)`
+
+* Returns the current weather effects seen by the player.
+  It returns a table with two keys:
+  * `clouds`:   A table (or `nil`) with cloud data following the same format as used for `player:set_clouds()`.
+  * `lighting`: A table (or `nil`) with lighting data following the same format as used for `player:set_lighting()`.
+* `player`: ObjectRef of the relevant player
+* You can override this function to change the weather effects by simply returning different values.
+  Setting `clouds` or `lighting` in the result table to `nil` will *prevent* those from changing.
+
+Utilities
+---------
+
+`default.dig_up(pos, node, digger, max_height)`
+
+ * Find all nodes above `pos` that is the same, then dig them all
+ * `max_height`	Maximum number of nodes to iterate. Default: 100
